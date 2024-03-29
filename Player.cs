@@ -10,22 +10,24 @@ public class Player
     public Player()
     {
         CurrentLocation = StartingLocation;
-        GetPlayerInput();
+        PerformPlayerAction(GetPlayerInput());
     }
     
-    // Take input
-    public void GetPlayerInput()
+    // Methods
+    
+    // Get input
+    private string[] GetPlayerInput()
     {
-        string? input;
-        
         Console.Write($"What do you want to do? ");
-
-        input = Console.ReadLine();
+        string? input = Console.ReadLine();
+        string[] inputs = input.Split(" "); // Chunk up response
+        
+        return inputs; 
     }
 
-    // Move the player
-
-
-    // Enable Fountain when able
-
+    // Perform player action
+    private void PerformPlayerAction(string[] inputs)
+    {
+        
+    }
 }
