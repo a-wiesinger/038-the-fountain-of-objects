@@ -2,15 +2,17 @@ namespace _038_the_fountain_of_objects;
 
 public class Map
 {
+    // Properties
     private int MapSizeWidth { get; }
     private int MapSizeHeight { get; }
     
     public Room[,] DrawnMap { get; }
 
+    // Constructor
     public Map(int mapSizeWidth, int mapSizeHeight)
     {
         MapSizeWidth = mapSizeWidth;
-        MapSizeHeight = mapSizeWidth;
+        MapSizeHeight = mapSizeHeight;
 
         DrawnMap = new Room[MapSizeWidth, MapSizeHeight];
 
@@ -19,16 +21,15 @@ public class Map
             for (int j = 0; j < MapSizeHeight; j++)
             {
                 // Fill out row
-                if (i == 0 && j == 0)
+                if (i == 0 && j == 0) // Where the entrance is
                 {
                     DrawnMap[i, j] = new CavernEntrance();
-                    Console.Write($"{DrawnMap[i, j]} ");
                 }
-                else if (i == 0 && j == 2)
+                else if (i == 0 && j == 2) // Where the Fountain is
                 {
                     DrawnMap[i, j] = new FountainOfObjectsRoom();
                 }
-                else
+                else // The rest are normal empty rooms
                 {
                     DrawnMap[i, j] = new NormalRoom();
                 }
@@ -40,4 +41,3 @@ public class Map
         }
     }
 }
-

@@ -1,4 +1,4 @@
-# Level 36 - "The Fountain of Objects"
+# Level 38 - "The Fountain of Objects"
 Following along with the C# Player's Guide by RB Whitaker
 ## Topic
 Object Oriented Programming Game
@@ -21,6 +21,6 @@ Object Oriented Programming Game
 7. The player wins the game if they turn the Fountain on and return to the cavern entrance. If the player has enabled the Fountain and are in the entrance, they win.
 8. Use different colors to display the different types of text in the console window. e.g. Narrative items are in magenta, description text is in white, user input is in cyan, text describing the entrance light is in yellow, messages about the Fountain are in blue.
 9. Example of what program might look like:
-   1. You are in the room at (Row=0, Column=0). 
-   2. You see light coming from the cavern entrance. 
+   1. You are in the room at (Row=0, Column=0).
+   2. You see light coming from the cavern entrance.
    3. What do you want to do? (move east)

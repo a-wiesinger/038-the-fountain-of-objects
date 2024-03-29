@@ -6,6 +6,10 @@ public static class GameManager
     {
         // Build map
         Map map = new Map(4, 4);
+        
+        // Create player
+        Player player = new Player();
+        Console.Write($"Here is the player: ({player.CurrentLocation[0]}, {player.CurrentLocation[1]})");
     }
 
     public static void TakeTurn()
