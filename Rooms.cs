@@ -20,7 +20,7 @@ public class NormalRoom : Room, IRoom
 public class FountainOfObjectsRoom : Room, IRoom
 {
     public string Description { get; }
-
+    
     public bool IsEnabled { get; } = false;
 
     public FountainOfObjectsRoom()
