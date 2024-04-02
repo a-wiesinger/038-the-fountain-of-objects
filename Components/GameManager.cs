@@ -10,9 +10,6 @@ public static class GameManager
     {
         // Clear console
         Console.Clear();
-        
-        // Build map
-        Map map = new Map(4, 4);
 
         // Story time
         TextColor.MakeTextMagenta();
@@ -20,6 +17,29 @@ public static class GameManager
         Console.WriteLine("You must explore the cavern and try to locate " +
                           "the Fountain and re-activate it.");
         TextColor.ResetTextColor();
+        
+        // Build map
+        Console.WriteLine("Please enter what size game world you would like to play in.");
+        Console.Write("Please enter \"small\", \"medium\", or \"large\": ");
+        string? mapSize = Console.ReadLine();
+
+        Map map;
+        
+        switch (mapSize)
+        {
+            case "small":
+                map = new Map("small", 4, 4);
+                break;
+            case "medium":
+                map = new Map("medium", 6, 6);
+                break;
+            case "large":
+                map = new Map("large", 8, 8);
+                break;
+            default:
+                map = new Map("small", 4, 4);
+                break;
+        }
         
         // Create player
         Player player = new Player();

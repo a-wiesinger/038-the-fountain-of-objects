@@ -8,20 +8,36 @@ public class Map
     public int MapSizeWidth { get; }
     public int MapSizeHeight { get; }
     
-    public int[] FountainLocation { get; } = new [] { 0, 2 };
-    public int[] EntranceLocation { get; } = new [] { 0, 0 };
+    public int[] FountainLocation { get; }
+    public int[] EntranceLocation { get; }
     
     public Room[,] DrawnMap { get; }
     public FountainOfObjectsRoom FountainOfObjects { get; } = new FountainOfObjectsRoom();
     public CavernEntranceRoom CavernEntrance { get; } = new CavernEntranceRoom();
     
     // Constructor
-    public Map(int mapSizeWidth, int mapSizeHeight)
+    public Map(string mapSize, int mapSizeWidth, int mapSizeHeight)
     {
         MapSizeWidth = mapSizeWidth;
         MapSizeHeight = mapSizeHeight;
 
         DrawnMap = new Room[mapSizeWidth, mapSizeHeight];
+
+        if (mapSize == "small")
+        {
+            FountainLocation = new[] { 0, 2 };
+            EntranceLocation = new[] { 0, 0 };
+        }
+        else if (mapSize == "medium")
+        {
+            FountainLocation = new[] { 3, 4 };
+            EntranceLocation = new[] { 0, 3 };
+        }
+        else
+        {
+            FountainLocation = new[] { 2, 5 };
+            EntranceLocation = new[] { 7, 2 };
+        }
 
         for (int i = 0; i < MapSizeWidth; i++)
         {
@@ -42,10 +58,10 @@ public class Map
                 }
                 
                 // Comment out below cws to hide map
-                //Console.Write($"{DrawnMap[i, j]} ");
+                Console.Write($"{DrawnMap[i, j]} ");
             }
             // Move to next row 
-            //Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }

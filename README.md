@@ -29,3 +29,11 @@ Object Oriented Programming Game
    1. You are in the room at (Row=0, Column=0).
    2. You see light coming from the cavern entrance.
    3. What do you want to do? (move east)
+
+## Expansions
+Small, Medium, Large
+1. Create an option for a 4x4, 6x6, and 8x8 grid game world
+2. Before the game begins, ask the player what size world they want to play in (S, M, L)
+   1. Create the game world based on this
+3. Pick new locations for the Cave Entrance and the Fountain of Objects rooms
+4. Note: Other challenges may need to be updated based on these new sizes
