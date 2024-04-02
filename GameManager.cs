@@ -1,28 +1,36 @@
+using System.Net.Mime;
+
 namespace _038_the_fountain_of_objects;
 
 public static class GameManager
 {
     private static bool IsGameActive { get; set; } = true;
-    
+
     public static void StartGame()
     {
         // Build map
         Map map = new Map(4, 4);
-        
-        Console.WriteLine(map.DrawnMap[map.FountainLocation[0], map.FountainLocation[1]]);
-        
+
         // Create player
         Player player = new Player();
-        Console.WriteLine($"Here is the player: ({player.CurrentLocation[0]}, {player.CurrentLocation[1]})");
-        
+
+        // Story time
+        TextColor.MakeTextMagenta();
+        Console.WriteLine("Welcome to the cavern of the Fountain of Objects!");
+        Console.WriteLine("You must explore the cavern and try to locate " +
+                          "the Fountain and re-activate it.");
+        TextColor.ResetTextColor();
+
         // Take turn
         TakeTurn(map, player);
     }
 
-    public static void TakeTurn( Map map, Player player)
+    public static void TakeTurn(Map map, Player player)
     {
         while (IsGameActive)
         {
+            Room.DescribeLocation(map, player);
+
             string[] playerInput = player.GetPlayerInput();
             bool isValidAction = player.IsValidAction(playerInput, player, map);
 
@@ -30,20 +38,19 @@ public static class GameManager
             {
                 player.PerformPlayerAction(playerInput, player, map);
             }
-        
-            Console.WriteLine($"You are now at location: {player.CurrentLocation[0]}, {player.CurrentLocation[1]}");
+            
+            CheckGameState(map, player);
         }
-        
-        CheckGameState(map, player);
     }
-
+    
     public static void CheckGameState(Map map, Player player)
     {
         if (player.CurrentLocation[0] == 0 && player.CurrentLocation[1] == 0)
         {
-            if (true)
+            if (map.FountainOfObjects.IsEnabled)
             {
-                Console.WriteLine($"{map.DrawnMap[0, 1]}");
+                Console.WriteLine($"You win!!");
+                IsGameActive = false;
             }
         }
     }

@@ -19,7 +19,12 @@ Object Oriented Programming Game
 5. Room 0,0 is the cavern entrance. The player starts here and can see light coming from outside the cavern when in the room.
 6. Room 0,2 is the Fountain of Objects room. The player hears different things depending on if the Fountain is active or not. The fountain's default state is to off. If the player is in the Fountain room and types "enable fountain" it will turn it on. If it is already on and they type it again, nothing happens. If they try to enable the fountain from another room, the player will be shown an appropriate error message.
 7. The player wins the game if they turn the Fountain on and return to the cavern entrance. If the player has enabled the Fountain and are in the entrance, they win.
-8. Use different colors to display the different types of text in the console window. e.g. Narrative items are in magenta, description text is in white, user input is in cyan, text describing the entrance light is in yellow, messages about the Fountain are in blue.
+8. Use different colors to display the different types of text in the console window. e.g. 
+   1. Narrative items are in magenta
+   2. Description text is in white
+   3. User input is in cyan
+   4. Text describing the entrance light is in yellow
+   5. Messages about the Fountain are in blue
 9. Example of what program might look like:
    1. You are in the room at (Row=0, Column=0).
    2. You see light coming from the cavern entrance.

@@ -8,10 +8,12 @@ public class Map
     public int MapSizeWidth { get; }
     public int MapSizeHeight { get; }
     
-    public int[] FountainLocation { get; } = new [] { 0, 2 }; // Change to 
-    private int[] EntranceLocation { get; } = new [] { 0, 0 }; // Change to update entrace location
+    public int[] FountainLocation { get; } = new [] { 0, 2 };
+    public int[] EntranceLocation { get; } = new [] { 0, 0 };
     
     public Room[,] DrawnMap { get; }
+    public FountainOfObjectsRoom FountainOfObjects { get; } = new FountainOfObjectsRoom();
+    public CavernEntranceRoom CavernEntrance { get; } = new CavernEntranceRoom();
     
     // Constructor
     public Map(int mapSizeWidth, int mapSizeHeight)
@@ -28,11 +30,11 @@ public class Map
                 // Fill out row
                 if (i == EntranceLocation[0] && j == EntranceLocation[1])
                 {
-                    DrawnMap[i, j] = new CavernEntrance();
+                    DrawnMap[i, j] = CavernEntrance;
                 }
                 else if (i == FountainLocation[0] && j == FountainLocation[1])
                 {
-                    DrawnMap[i, j] = new FountainOfObjectsRoom();
+                    DrawnMap[i, j] = FountainOfObjects;
                 }
                 else // The rest are normal empty rooms
                 {
