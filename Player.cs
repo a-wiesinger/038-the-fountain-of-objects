@@ -13,8 +13,10 @@ public class Player
     {
         CurrentLocation = StartingLocation;
         
+        TextColor.MakeTextWhite();
         Console.WriteLine("---------------------------------------------------------------------");
         Console.WriteLine($"Here is the player: (Row: {CurrentLocation[0]}, Column: {CurrentLocation[1]})");
+        TextColor.ResetTextColor();
     }
 
     // Methods

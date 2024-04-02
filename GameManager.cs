@@ -8,11 +8,11 @@ public static class GameManager
 
     public static void StartGame()
     {
+        // Clear console
+        Console.Clear();
+        
         // Build map
         Map map = new Map(4, 4);
-
-        // Create player
-        Player player = new Player();
 
         // Story time
         TextColor.MakeTextMagenta();
@@ -20,6 +20,9 @@ public static class GameManager
         Console.WriteLine("You must explore the cavern and try to locate " +
                           "the Fountain and re-activate it.");
         TextColor.ResetTextColor();
+        
+        // Create player
+        Player player = new Player();
 
         // Take turn
         TakeTurn(map, player);

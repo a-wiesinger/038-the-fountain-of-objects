@@ -41,10 +41,11 @@ public class Map
                     DrawnMap[i, j] = new NormalRoom();
                 }
                 
-                Console.Write($"{DrawnMap[i, j]} ");
+                // Comment out below cws to hide map
+                //Console.Write($"{DrawnMap[i, j]} ");
             }
             // Move to next row 
-            Console.WriteLine();
+            //Console.WriteLine();
         }
     }
 }
