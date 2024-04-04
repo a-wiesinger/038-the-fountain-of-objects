@@ -1,4 +1,4 @@
-namespace _038_the_fountain_of_objects;
+namespace _038_the_fountain_of_objects.Components;
 
 // Basic room that fills most of the map
 public class NormalRoom : Room, IRoom
@@ -31,7 +31,18 @@ public class CavernEntranceRoom : Room, IRoom
 
     public override string ToString()
     {
-        return "CAVE";
+        return "ENTR";
+    }
+}
+
+public class PitRoom : Room, IRoom
+{
+    public string Description { get; } = "You have fallen into the pit and perished.";
+    public string Warning { get; } = "You feel a draft. There is a pit in a nearby room.";
+
+    public override string ToString()
+    {
+        return "PIT_";
     }
 }
 
@@ -41,8 +52,9 @@ public abstract class Room
     {
         int playerLocationX = player.CurrentLocation[0];
         int playerLocationY = player.CurrentLocation[1];
-        int[] entranceLocation = new [] { map.EntranceLocation[0], map.EntranceLocation[1] };
-        int[] fountainLocation = new [] { map.FountainLocation[0], map.FountainLocation[1] };
+        int[] entranceLocation = new[] { map.CavernEntranceLocation[0], map.CavernEntranceLocation[1] };
+        int[] fountainLocation = new[] { map.FountainLocation[0], map.FountainLocation[1] };
+        //int[,] pitLocations = new[,] { }; 
         
         // Cavern Entrance
         if (playerLocationX == entranceLocation[0] && playerLocationY == entranceLocation[1])
@@ -58,6 +70,10 @@ public abstract class Room
             Console.WriteLine(map.FountainOfObjects.Description);
             TextColor.ResetTextColor();
         }
+        // Check to see if fell into pit
+        // TODO
+        // Check to see if pit is nearby
+        // TODO
     }
 }
 

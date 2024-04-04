@@ -37,3 +37,12 @@ Small, Medium, Large
    1. Create the game world based on this
 3. Pick new locations for the Cave Entrance and the Fountain of Objects rooms
 4. Note: Other challenges may need to be updated based on these new sizes
+
+Pits
+1. Add this number of rooms to the game depending on map size:
+   1. Small = 1
+   2. Medium = 2
+   3. Large = 4
+2. If a player goes into a pit room, it's game over
+3. Players can sense a pit room with they are in any of the adjacent 8 rooms
+   1. "You feel a draft. There is a pit in a nearby room."

@@ -1,6 +1,4 @@
-using System.Net.Mime;
-
-namespace _038_the_fountain_of_objects;
+namespace _038_the_fountain_of_objects.Components;
 
 public static class GameManager
 {
@@ -48,7 +46,7 @@ public static class GameManager
         TakeTurn(map, player);
     }
 
-    public static void TakeTurn(Map map, Player player)
+    private static void TakeTurn(Map map, Player player)
     {
         while (IsGameActive)
         {
@@ -66,7 +64,7 @@ public static class GameManager
         }
     }
     
-    public static void CheckGameState(Map map, Player player)
+    private static void CheckGameState(Map map, Player player)
     {
         if (player.CurrentLocation[0] == 0 && player.CurrentLocation[1] == 0)
         {

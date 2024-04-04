@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices.JavaScript;
 
-namespace _038_the_fountain_of_objects;
+namespace _038_the_fountain_of_objects.Components;
 
 public class Player
 {

@@ -1,6 +1,7 @@
-using System.ComponentModel;
+using System.Security.Cryptography;
+using System.Xml.XPath;
 
-namespace _038_the_fountain_of_objects;
+namespace _038_the_fountain_of_objects.Components;
 
 public class Map
 {
@@ -9,11 +10,16 @@ public class Map
     public int MapSizeHeight { get; }
     
     public int[] FountainLocation { get; }
-    public int[] EntranceLocation { get; }
+    public int[] CavernEntranceLocation { get; }
+    public int[,] PitLocations { get; }
+
+    private bool IsPitCreationFinished { get; }
     
     public Room[,] DrawnMap { get; }
     public FountainOfObjectsRoom FountainOfObjects { get; } = new FountainOfObjectsRoom();
     public CavernEntranceRoom CavernEntrance { get; } = new CavernEntranceRoom();
+    public PitRoom Pit { get; } = new PitRoom();
+    public NormalRoom Normal { get; } = new NormalRoom();
     
     // Constructor
     public Map(string mapSize, int mapSizeWidth, int mapSizeHeight)
@@ -23,44 +29,77 @@ public class Map
 
         DrawnMap = new Room[mapSizeWidth, mapSizeHeight];
 
+        // Map sizes based on player input
         if (mapSize == "small")
         {
             FountainLocation = new[] { 0, 2 };
-            EntranceLocation = new[] { 0, 0 };
+            CavernEntranceLocation = new[] { 0, 0 };
+            PitLocations = new[,] { { 3, 2 } };
         }
         else if (mapSize == "medium")
         {
             FountainLocation = new[] { 3, 4 };
-            EntranceLocation = new[] { 0, 3 };
+            CavernEntranceLocation = new[] { 0, 3 };
+            PitLocations = new[,] { { 3, 0 }, { 5, 2 } };
         }
         else
         {
             FountainLocation = new[] { 2, 5 };
-            EntranceLocation = new[] { 7, 2 };
+            CavernEntranceLocation = new[] { 7, 2 };
+            PitLocations = new[,] { { 0, 3 }, { 6, 4 }, { 3, 2 }, { 1, 4 } };
         }
-
+        
+        // Build Map
+        // Construct basic map full of normal rooms
+        AddBlankMap();
+        AddFountainOfObjects();
+        AddCavernEntrance();
+        AddPitLocations();
+        RenderMap(mapSizeWidth, mapSizeHeight);
+    }
+    
+    // Methods
+    public void AddBlankMap()
+    {
         for (int i = 0; i < MapSizeWidth; i++)
         {
             for (int j = 0; j < MapSizeHeight; j++)
             {
-                // Fill out row
-                if (i == EntranceLocation[0] && j == EntranceLocation[1])
-                {
-                    DrawnMap[i, j] = CavernEntrance;
-                }
-                else if (i == FountainLocation[0] && j == FountainLocation[1])
-                {
-                    DrawnMap[i, j] = FountainOfObjects;
-                }
-                else // The rest are normal empty rooms
-                {
-                    DrawnMap[i, j] = new NormalRoom();
-                }
-                
-                // Comment out below cws to hide map
+                // Fill map with normal empty rooms
+                DrawnMap[i, j] = Normal;
+            }
+        }
+    }
+    
+    public void AddFountainOfObjects()
+    {
+        DrawnMap[FountainLocation[0], FountainLocation[1]] = FountainOfObjects;
+    }
+
+    public void AddCavernEntrance()
+    {
+        DrawnMap[CavernEntranceLocation[0], CavernEntranceLocation[1]] = CavernEntrance;
+    }
+
+    public void AddPitLocations()
+    {
+        for (int i = 0; i < PitLocations.Length / 2; i++)
+        {
+            int pitCoordOne = 0;
+            int pitCoordTwo = 1;
+
+            DrawnMap[PitLocations[i, pitCoordOne], PitLocations[i, pitCoordTwo]] = Pit;
+        }
+    }
+
+    public void RenderMap(int mapSizeWidth, int mapSizeHeight)
+    {
+        for (int i = 0; i < mapSizeWidth; i++)
+        {
+            for (int j = 0; j < mapSizeHeight; j++)
+            {
                 Console.Write($"{DrawnMap[i, j]} ");
             }
-            // Move to next row 
             Console.WriteLine();
         }
     }
