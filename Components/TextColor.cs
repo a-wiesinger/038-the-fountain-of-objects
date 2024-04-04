@@ -27,6 +27,11 @@ public class TextColor
         Console.ForegroundColor = ConsoleColor.Blue;
     }
 
+    public static void MakeTextRed()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+    }
+
     public static void ResetTextColor()
     {
         Console.ResetColor();

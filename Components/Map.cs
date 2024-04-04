@@ -55,7 +55,7 @@ public class Map
         AddFountainOfObjects();
         AddCavernEntrance();
         AddPitLocations();
-        RenderMap(mapSizeWidth, mapSizeHeight);
+        // RenderMap(mapSizeWidth, mapSizeHeight);
     }
     
     // Methods
