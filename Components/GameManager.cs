@@ -66,6 +66,7 @@ public static class GameManager
     
     private static void CheckGameState(Map map, Player player)
     {
+        // Check for win state
         if (player.CurrentLocation[0] == 0 && player.CurrentLocation[1] == 0)
         {
             if (map.FountainOfObjects.IsEnabled)

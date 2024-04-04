@@ -58,9 +58,6 @@ public abstract class Room
         int[] fountainLocation = new[] { map.FountainLocation[0], map.FountainLocation[1] };
         int[,] pitLocations = map.PitLocations;
         
-        // TODO - Remove comment when done building out
-        // Console.WriteLine($"{map.PitLocations[2, 0]}, {map.PitLocations[2, 1]}");
-        
         // Cavern Entrance
         if (playerLocation[0] == entranceLocation[0] && playerLocation[1] == entranceLocation[1])
         {
@@ -86,13 +83,28 @@ public abstract class Room
             {
                 if (map.PitLocations[i, pitCoordTwo] == player.CurrentLocation[1])
                 {
+                    TextColor.MakeTextDarkRed();
                     Console.WriteLine(map.Pit.Description);
+                    TextColor.ResetTextColor();
                 }
             }
         }
         
-        // Check to see if pit is nearby
-        // TODO
+        // Is Pit Near
+        for (int i = 0; i < map.PitLocations.Length / 2; i++)
+        {
+            int pitCoordOne = 0;
+            int pitCoordTwo = 1;
+
+            // Checking to the west
+            if (player.CurrentLocation[0] == map.PitLocations[i, pitCoordOne])
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) - 1)
+                {
+                    Console.WriteLine(map.Pit.Warning);
+                }
+            }
+        }
     }
 }
 
