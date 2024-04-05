@@ -51,6 +51,8 @@ public static class GameManager
         while (IsGameActive)
         {
             Room.DescribeLocation(map, player);
+            
+            player.ShowPlayerLocation(player);
 
             string[] playerInput = player.GetPlayerInput();
             bool isValidAction = player.IsValidAction(playerInput, player, map);

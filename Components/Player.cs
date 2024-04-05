@@ -13,10 +13,10 @@ public class Player
     {
         CurrentLocation = StartingLocation;
         
-        TextColor.MakeTextWhite();
+        // TextColor.MakeTextWhite();
         Console.WriteLine("---------------------------------------------------------------------");
-        Console.WriteLine($"Here is the player: (Row: {CurrentLocation[0]}, Column: {CurrentLocation[1]})");
-        TextColor.ResetTextColor();
+        // Console.WriteLine($"Here is the player: (Row: {CurrentLocation[0]}, Column: {CurrentLocation[1]})");
+        // TextColor.ResetTextColor();
     }
 
     // Methods
@@ -99,8 +99,12 @@ public class Player
             TextColor.ResetTextColor();
         }
         
-        Console.WriteLine($"You are now at location: (Row: {player.CurrentLocation[0]}, Column: {player.CurrentLocation[1]})");
         Console.WriteLine("---------------------------------------------------------------------");
+    }
+
+    public void ShowPlayerLocation(Player player)
+    {
+        Console.WriteLine($"You are now at: (Row: {player.CurrentLocation[0]}, Column: {player.CurrentLocation[1]})");
     }
 
     public bool IsValidAction(string[] inputs, Player player, Map map)
@@ -121,8 +125,7 @@ public class Player
             switch (ojbectOrDirection)
             {
                 case "north":
-                    if (playerLocationRow + moveNorth < map.MapSizeHeight -
-                        map.MapSizeHeight)
+                    if (playerLocationRow + moveNorth < map.MapSizeHeight - map.MapSizeHeight)
                     {
                         ErrorMessaging.InvalidDirection();
                         return false;
@@ -133,8 +136,7 @@ public class Player
                     }
                     break;
                 case "south":
-                    if (playerLocationRow + moveSouth > map.MapSizeHeight 
-                    - 1)
+                    if (playerLocationRow + moveSouth > map.MapSizeHeight - 1)
                     {
                         ErrorMessaging.InvalidDirection();
                         return false;
@@ -145,8 +147,7 @@ public class Player
                     }
                     break;
                 case "east":
-                    if (playerLocationColumn + moveEast > map.MapSizeWidth 
-                    - 1)
+                    if (playerLocationColumn + moveEast > map.MapSizeWidth - 1)
                     {
                         ErrorMessaging.InvalidDirection();
                         return false;
@@ -157,9 +158,7 @@ public class Player
                     }
                     break;
                 case "west":
-                    if (playerLocationColumn + moveWest < map
-                    .MapSizeWidth - 
-                    map.MapSizeWidth)
+                    if (playerLocationColumn + moveWest < map.MapSizeWidth - map.MapSizeWidth)
                     {
                         ErrorMessaging.InvalidDirection();
                         return false;

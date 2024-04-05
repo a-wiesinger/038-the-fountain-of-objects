@@ -1,5 +1,6 @@
 using System.Data;
 using System.Net;
+using System.Net.Mime;
 
 namespace _038_the_fountain_of_objects.Components;
 
@@ -57,20 +58,31 @@ public abstract class Room
         int[] entranceLocation = new[] { map.CavernEntranceLocation[0], map.CavernEntranceLocation[1] };
         int[] fountainLocation = new[] { map.FountainLocation[0], map.FountainLocation[1] };
         int[,] pitLocations = map.PitLocations;
-        
+
         // Cavern Entrance
-        if (playerLocation[0] == entranceLocation[0] && playerLocation[1] == entranceLocation[1])
+        if (playerLocation[0] == entranceLocation[0])
         {
-            TextColor.MakeTextYellow();
-            Console.WriteLine(map.CavernEntrance.Description);
-            TextColor.ResetTextColor();
+            if (playerLocation[1] == entranceLocation[1])
+            {
+                TextColor.MakeTextYellow();
+                Console.WriteLine(map.CavernEntrance.Description);
+                TextColor.ResetTextColor();
+            }
         }
         // The Fountain of Objects
-        else if (playerLocation[0] == fountainLocation[0] && playerLocation[1] == fountainLocation[1])
+        else if (playerLocation[0] == fountainLocation[0])
         {
-            TextColor.MakeTextBlue();
-            Console.WriteLine(map.FountainOfObjects.Description);
-            TextColor.ResetTextColor();
+            if (playerLocation[1] == fountainLocation[1])
+            {
+                TextColor.MakeTextBlue();
+                Console.WriteLine(map.FountainOfObjects.Description);
+                TextColor.ResetTextColor();
+            }
+        }
+        // Normal Room
+        if (true)
+        {
+            // TODO - Complete logic for describing normal rooms as we pass through them
         }
         
         // Pit
@@ -96,12 +108,85 @@ public abstract class Room
             int pitCoordOne = 0;
             int pitCoordTwo = 1;
 
-            // Checking to the west
+            // Check cardinal direction in relation to pit
+            // West
             if (player.CurrentLocation[0] == map.PitLocations[i, pitCoordOne])
             {
                 if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) - 1)
                 {
+                    TextColor.MakeTextGreen();
                     Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // SouthWest
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]) + 1)
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) - 1)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // NorthWest
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]) - 1)
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) - 1)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // North
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]) - 1)
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]))
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // NorthEast
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]) - 1)
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) + 1)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // East
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]))
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) + 1)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // SouthEast
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]) + 1)
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]) + 1)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
+                }
+            }
+            // South
+            if (player.CurrentLocation[0] == (map.PitLocations[i, pitCoordOne]) + 1)
+            {
+                if (player.CurrentLocation[1] == (map.PitLocations[i, pitCoordTwo]))
+                {
+                    TextColor.MakeTextGreen();
+                    Console.WriteLine(map.Pit.Warning);
+                    TextColor.ResetTextColor();
                 }
             }
         }
