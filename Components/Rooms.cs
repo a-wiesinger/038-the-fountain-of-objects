@@ -65,18 +65,15 @@ public abstract class Room
         }
         
         // The Fountain of Objects
-        if (player.CurrentLocation[0] == map.FountainLocation[0])
+        if (map.GetCurrentRoomType(player, map).GetType() == typeof(FountainOfObjectsRoom))
         {
-            if (player.CurrentLocation[1] == map.FountainLocation[1])
-            {
-                TextColor.MakeTextBlue();
-                Console.WriteLine(map.FountainOfObjects.Description);
-                TextColor.ResetTextColor();
-            }
+            TextColor.MakeTextBlue();
+            Console.WriteLine(map.FountainOfObjects.Description);
+            TextColor.ResetTextColor();
         }
         
         // Normal Room
-        if (player.GetRoomType(player, map).GetType() == typeof(NormalRoom))
+        if (map.GetCurrentRoomType(player, map).GetType() == typeof(NormalRoom))
         {
             TextColor.MakeTextDarkGray();
             Console.WriteLine(map.Normal.Description);
@@ -84,21 +81,13 @@ public abstract class Room
         }
         
         // Pit
-        for (int i = 0; i < map.PitLocations.Length / 2; i++)
+        if (map.GetCurrentRoomType(player, map).GetType() == typeof(PitRoom))
         {
-            int pitCoordOne = 0;
-            int pitCoordTwo = 1;
-
-            if (map.PitLocations[i, pitCoordOne] == player.CurrentLocation[0])
-            {
-                if (map.PitLocations[i, pitCoordTwo] == player.CurrentLocation[1])
-                {
-                    TextColor.MakeTextDarkRed();
-                    Console.WriteLine(map.Pit.Description);
-                    TextColor.ResetTextColor();
-                }
-            }
+            TextColor.MakeTextDarkRed();
+            Console.WriteLine(map.Pit.Description);
+            TextColor.ResetTextColor();
         }
+        
         
         // Is Pit Near
         for (int i = 0; i < map.PitLocations.Length / 2; i++)

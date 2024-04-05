@@ -103,4 +103,9 @@ public class Map
             Console.WriteLine();
         }
     }
+    
+    public Room GetCurrentRoomType(Player player, Map map)
+    {
+        return map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]];
+    }
 }

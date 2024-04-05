@@ -45,11 +45,6 @@ public class Player
         return inputs; 
     }
 
-    public Room GetRoomType(Player player, Map map)
-    {
-        return map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]];
-    }
-
     // Perform player action
     public void PerformPlayerAction(string[] inputs, Player player, Map map)
     {
