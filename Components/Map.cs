@@ -1,6 +1,3 @@
-using System.Security.Cryptography;
-using System.Xml.XPath;
-
 namespace _038_the_fountain_of_objects.Components;
 
 public class Map
@@ -22,7 +19,7 @@ public class Map
     public NormalRoom Normal { get; } = new NormalRoom();
     
     // Constructor
-    public Map(string mapSize, int mapSizeWidth, int mapSizeHeight)
+    public Map(string mapSize, int mapSizeWidth, int mapSizeHeight, Player player)
     {
         MapSizeWidth = mapSizeWidth;
         MapSizeHeight = mapSizeHeight;
@@ -35,18 +32,21 @@ public class Map
             FountainLocation = new[] { 0, 2 };
             CavernEntranceLocation = new[] { 0, 0 };
             PitLocations = new[,] { { 3, 2 } };
+            player.CurrentLocation = new[] { CavernEntranceLocation[0], CavernEntranceLocation[1] };
         }
         else if (mapSize == "medium")
         {
             FountainLocation = new[] { 3, 4 };
             CavernEntranceLocation = new[] { 0, 3 };
             PitLocations = new[,] { { 3, 0 }, { 5, 2 } };
+            player.CurrentLocation = new[] { CavernEntranceLocation[0], CavernEntranceLocation[1] };
         }
         else
         {
             FountainLocation = new[] { 2, 5 };
             CavernEntranceLocation = new[] { 7, 2 };
             PitLocations = new[,] { { 0, 3 }, { 6, 4 }, { 3, 2 }, { 1, 4 } };
+            player.CurrentLocation = new[] { CavernEntranceLocation[0], CavernEntranceLocation[1] };
         }
         
         // Build Map

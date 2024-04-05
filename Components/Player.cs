@@ -5,19 +5,7 @@ namespace _038_the_fountain_of_objects.Components;
 public class Player
 {
     // Properties
-    private int[] StartingLocation { get; } = new[] { 0, 0 };
     public int[] CurrentLocation { get; set; }
-
-    // Constructor
-    public Player()
-    {
-        CurrentLocation = StartingLocation;
-        
-        // TextColor.MakeTextWhite();
-        Console.WriteLine("---------------------------------------------------------------------");
-        // Console.WriteLine($"Here is the player: (Row: {CurrentLocation[0]}, Column: {CurrentLocation[1]})");
-        // TextColor.ResetTextColor();
-    }
 
     // Methods
     // Get input
@@ -55,6 +43,11 @@ public class Player
         }
 
         return inputs; 
+    }
+
+    public Room GetRoomType(Player player, Map map)
+    {
+        return map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]];
     }
 
     // Perform player action
@@ -98,8 +91,6 @@ public class Player
             Console.WriteLine($"You've enabled the Fountain of Objects!!");
             TextColor.ResetTextColor();
         }
-        
-        Console.WriteLine("---------------------------------------------------------------------");
     }
 
     public void ShowPlayerLocation(Player player)

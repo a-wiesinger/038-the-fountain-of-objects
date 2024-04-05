@@ -12,8 +12,7 @@ public static class GameManager
         // Story time
         TextColor.MakeTextMagenta();
         Console.WriteLine("Welcome to the cavern of the Fountain of Objects!");
-        Console.WriteLine("You must explore the cavern and try to locate " +
-                          "the Fountain and re-activate it.");
+        Console.WriteLine("You must explore the cavern and try to locate " + "the Fountain and re-activate it.");
         TextColor.ResetTextColor();
         
         // Build map
@@ -21,26 +20,26 @@ public static class GameManager
         Console.Write("Please enter \"small\", \"medium\", or \"large\": ");
         string? mapSize = Console.ReadLine();
 
+        // Create player
+        Player player = new Player();
+        
         Map map;
         
         switch (mapSize)
         {
             case "small":
-                map = new Map("small", 4, 4);
+                map = new Map("small", 4, 4, player);
                 break;
             case "medium":
-                map = new Map("medium", 6, 6);
+                map = new Map("medium", 6, 6, player);
                 break;
             case "large":
-                map = new Map("large", 8, 8);
+                map = new Map("large", 8, 8, player);
                 break;
             default:
-                map = new Map("small", 4, 4);
+                map = new Map("small", 4, 4, player);
                 break;
         }
-        
-        // Create player
-        Player player = new Player();
 
         // Take turn
         TakeTurn(map, player);

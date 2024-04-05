@@ -1,7 +1,3 @@
-using System.Data;
-using System.Net;
-using System.Net.Mime;
-
 namespace _038_the_fountain_of_objects.Components;
 
 // Basic room that fills most of the map
@@ -54,35 +50,37 @@ public abstract class Room
 {
     public static void DescribeLocation(Map map, Player player)
     {
-        int[] playerLocation = new[] { player.CurrentLocation[0], player.CurrentLocation[1] };
-        int[] entranceLocation = new[] { map.CavernEntranceLocation[0], map.CavernEntranceLocation[1] };
-        int[] fountainLocation = new[] { map.FountainLocation[0], map.FountainLocation[1] };
-        int[,] pitLocations = map.PitLocations;
+        // Describe room player is in
+        Console.WriteLine("---------------------------------------------------------------------");
 
         // Cavern Entrance
-        if (playerLocation[0] == entranceLocation[0])
+        if (player.CurrentLocation[0] == map.CavernEntranceLocation[0])
         {
-            if (playerLocation[1] == entranceLocation[1])
+            if (player.CurrentLocation[1] == map.CavernEntranceLocation[1])
             {
                 TextColor.MakeTextYellow();
                 Console.WriteLine(map.CavernEntrance.Description);
                 TextColor.ResetTextColor();
             }
         }
+        
         // The Fountain of Objects
-        else if (playerLocation[0] == fountainLocation[0])
+        if (player.CurrentLocation[0] == map.FountainLocation[0])
         {
-            if (playerLocation[1] == fountainLocation[1])
+            if (player.CurrentLocation[1] == map.FountainLocation[1])
             {
                 TextColor.MakeTextBlue();
                 Console.WriteLine(map.FountainOfObjects.Description);
                 TextColor.ResetTextColor();
             }
         }
+        
         // Normal Room
-        if (true)
+        if (player.GetRoomType(player, map).GetType() == typeof(NormalRoom))
         {
-            // TODO - Complete logic for describing normal rooms as we pass through them
+            TextColor.MakeTextDarkGray();
+            Console.WriteLine(map.Normal.Description);
+            TextColor.ResetTextColor();
         }
         
         // Pit

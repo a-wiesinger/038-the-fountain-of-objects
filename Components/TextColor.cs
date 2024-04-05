@@ -42,6 +42,11 @@ public class TextColor
         Console.ForegroundColor = ConsoleColor.Green;
     }
 
+    public static void MakeTextDarkGray()
+    {
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
     public static void ResetTextColor()
     {
         Console.ResetColor();

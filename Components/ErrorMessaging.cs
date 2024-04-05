@@ -1,5 +1,3 @@
-using System.Net.Mime;
-
 namespace _038_the_fountain_of_objects.Components;
 
 public class ErrorMessaging
