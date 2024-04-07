@@ -1,3 +1,5 @@
+using System.Net.Mime;
+
 namespace _038_the_fountain_of_objects.Components;
 
 public class Map
@@ -32,6 +34,7 @@ public class Map
             FountainLocation = new[] { 0, 2 };
             CavernEntranceLocation = new[] { 0, 0 };
             PitLocations = new[,] { { 3, 2 } };
+            // Set starting location
             player.CurrentLocation = new[] { CavernEntranceLocation[0], CavernEntranceLocation[1] };
         }
         else if (mapSize == "medium")
@@ -39,6 +42,7 @@ public class Map
             FountainLocation = new[] { 3, 4 };
             CavernEntranceLocation = new[] { 0, 3 };
             PitLocations = new[,] { { 3, 0 }, { 5, 2 } };
+            // Set starting location
             player.CurrentLocation = new[] { CavernEntranceLocation[0], CavernEntranceLocation[1] };
         }
         else
@@ -46,6 +50,7 @@ public class Map
             FountainLocation = new[] { 2, 5 };
             CavernEntranceLocation = new[] { 7, 2 };
             PitLocations = new[,] { { 0, 3 }, { 6, 4 }, { 3, 2 }, { 1, 4 } };
+            // Set starting location
             player.CurrentLocation = new[] { CavernEntranceLocation[0], CavernEntranceLocation[1] };
         }
         
@@ -55,7 +60,8 @@ public class Map
         AddFountainOfObjects();
         AddCavernEntrance();
         AddPitLocations();
-        RenderMap(mapSizeWidth, mapSizeHeight);
+        // RenderDeveloperMap(mapSizeWidth, mapSizeHeight);
+        //RenderMap(mapSizeWidth, mapSizeHeight);
     }
     
     // Methods
@@ -92,13 +98,34 @@ public class Map
         }
     }
 
-    public void RenderMap(int mapSizeWidth, int mapSizeHeight)
+    public void RenderDeveloperMap(int mapSizeWidth, int mapSizeHeight)
     {
         for (int i = 0; i < mapSizeWidth; i++)
         {
             for (int j = 0; j < mapSizeHeight; j++)
             {
                 Console.Write($"{DrawnMap[i, j]} ");
+            }
+            Console.WriteLine();
+        }
+    }
+    
+    public void RenderMap(int mapSizeWidth, int mapSizeHeight, Map map, Player player)
+    {
+        for (int i = 0; i < mapSizeWidth; i++)
+        {
+            for (int j = 0; j < mapSizeHeight; j++)
+            {
+                if (player.CurrentLocation[0] == i && player.CurrentLocation[1] == j)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.Write("[O] ");
+                    TextColor.ResetTextColor();
+                }
+                else
+                {
+                    Console.Write("[ ] ");
+                }
             }
             Console.WriteLine();
         }

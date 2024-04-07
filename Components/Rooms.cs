@@ -15,6 +15,9 @@ public class NormalRoom : Room, IRoom
 public class FountainOfObjectsRoom : Room, IRoom
 {
     public string Description { get; } = "You hear water dripping in this room. The Fountain of Objects is here!!";
+
+    public string FountainEnabledDescription { get; } = "You hear the roaring waters of the " +
+                                                        "Fountain of Objects. It has been activated!!";
     
     public bool IsEnabled { get; set; } = false;
 
@@ -67,9 +70,18 @@ public abstract class Room
         // The Fountain of Objects
         if (map.GetCurrentRoomType(player, map).GetType() == typeof(FountainOfObjectsRoom))
         {
-            TextColor.MakeTextBlue();
-            Console.WriteLine(map.FountainOfObjects.Description);
-            TextColor.ResetTextColor();
+            if (map.FountainOfObjects.IsEnabled)
+            {
+                TextColor.MakeTextBlue();
+                Console.WriteLine(map.FountainOfObjects.FountainEnabledDescription);
+                TextColor.ResetTextColor();
+            }
+            else
+            {
+                TextColor.MakeTextBlue();
+                Console.WriteLine(map.FountainOfObjects.Description);
+                TextColor.ResetTextColor();
+            }
         }
         
         // Normal Room

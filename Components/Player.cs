@@ -25,12 +25,18 @@ public class Player
             // Check to see if the person has entered anything at all
             if (input != null)
             {
-                string[] inputsActual = input.Split(" "); // Chunk up response
+                string[] inputSeparated = input.Split(" "); // Chunk up response
 
                 // Check to see that the user has only entered 2 arguments
-                if (inputsActual.Length == 2)
+                if (inputSeparated.Length == 2)
                 {
-                    inputs = inputsActual;
+                    inputs = inputSeparated;
+                    break;
+                }
+                // Check to see if the person is asking for help with commands
+                if (inputSeparated.Length == 1 && inputSeparated[0] == "help")
+                {
+                    GameManager.GetAvailableCommands();
                     break;
                 }
                 ErrorMessaging.InvalidInput();
