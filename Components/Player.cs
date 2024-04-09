@@ -56,6 +56,14 @@ public class Player
     {
         string action = inputs[0];
         string actedOnOrDirection = inputs[1];
+
+        int firstTurn = 0;
+
+        if (firstTurn == 0)
+        {
+            map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]].IsVisited = true;
+            firstTurn++;
+        }
         
         if (action == "move")
         {
@@ -65,21 +73,25 @@ public class Player
                     // Move player in -Y direction
                     player.CurrentLocation[0]--;
                     Console.WriteLine($"Moving North");
+                    map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]].IsVisited = true;
                     break;
                 case "south":
                     // Move player in +Y direction
                     player.CurrentLocation[0]++;
                     Console.WriteLine($"Moving South");
+                    map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]].IsVisited = true;
                     break;
                 case "east":
                     // Move player in +X direction
                     player.CurrentLocation[1]++;
                     Console.WriteLine($"Moving East");
+                    map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]].IsVisited = true;
                     break;
                 case "west":
                     // Move player in -X direction
                     player.CurrentLocation[1]--;
                     Console.WriteLine($"Moving West");
+                    map.DrawnMap[player.CurrentLocation[0], player.CurrentLocation[1]].IsVisited = true;
                     break;
                 default:
                     break;

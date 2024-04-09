@@ -82,6 +82,7 @@ public static class GameManager
             player.ShowPlayerLocation(player);
             
             map.RenderMap(map.MapSizeWidth, map.MapSizeHeight, map, player);
+            // map.RenderDeveloperMap(map.MapSizeWidth, map.MapSizeHeight, map, player);
 
             string[] playerInput = player.GetPlayerInput();
             bool isValidAction = player.IsValidAction(playerInput, player, map);

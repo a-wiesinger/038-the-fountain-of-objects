@@ -51,6 +51,8 @@ public class PitRoom : Room, IRoom
 
 public abstract class Room
 {
+    public bool IsVisited { get; set; }
+    
     public static void DescribeLocation(Map map, Player player)
     {
         // Describe room player is in

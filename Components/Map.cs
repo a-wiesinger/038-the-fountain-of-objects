@@ -12,7 +12,7 @@ public class Map
     public int[] CavernEntranceLocation { get; }
     public int[,] PitLocations { get; }
 
-    private bool IsPitCreationFinished { get; }
+    // private bool IsPitCreationFinished { get; }
     
     public Room[,] DrawnMap { get; }
     public FountainOfObjectsRoom FountainOfObjects { get; } = new FountainOfObjectsRoom();
@@ -72,7 +72,7 @@ public class Map
             for (int j = 0; j < MapSizeHeight; j++)
             {
                 // Fill map with normal empty rooms
-                DrawnMap[i, j] = Normal;
+                DrawnMap[i, j] = new NormalRoom();
             }
         }
     }
@@ -98,13 +98,30 @@ public class Map
         }
     }
 
-    public void RenderDeveloperMap(int mapSizeWidth, int mapSizeHeight)
+    public void RenderDeveloperMap(int mapSizeWidth, int mapSizeHeight, Map map, Player player)
     {
         for (int i = 0; i < mapSizeWidth; i++)
         {
             for (int j = 0; j < mapSizeHeight; j++)
             {
-                Console.Write($"{DrawnMap[i, j]} ");
+                // Current player location
+                if (player.CurrentLocation[0] == i && player.CurrentLocation[1] == j)
+                {
+                    TextColor.MakeTextGreen();
+                    Console.Write($"{map.DrawnMap[i, j]} ");
+                    TextColor.ResetTextColor();
+                }
+                // Visited
+                else if (map.DrawnMap[i, j].IsVisited)
+                {
+                    TextColor.MakeTextDarkGray();
+                    Console.Write($"{map.DrawnMap[i, j]} ");
+                    TextColor.ResetTextColor();
+                }
+                else
+                {
+                    Console.Write($"{map.DrawnMap[i, j]} ");
+                }
             }
             Console.WriteLine();
         }
@@ -116,10 +133,24 @@ public class Map
         {
             for (int j = 0; j < mapSizeHeight; j++)
             {
+                // Current player location
                 if (player.CurrentLocation[0] == i && player.CurrentLocation[1] == j)
                 {
                     TextColor.MakeTextGreen();
-                    Console.Write("[O] ");
+                    Console.Write($"[O] ");
+                    TextColor.ResetTextColor();
+                }
+                else if (map.DrawnMap[i, j].GetType() == typeof(CavernEntranceRoom))
+                {
+                    TextColor.MakeTextYellow();
+                    Console.Write("[ ] ");
+                    TextColor.ResetTextColor();
+                }
+                // Visited
+                else if (map.DrawnMap[i, j].IsVisited)
+                {
+                    TextColor.MakeTextDarkGray();
+                    Console.Write("[ ] ");
                     TextColor.ResetTextColor();
                 }
                 else

@@ -14,6 +14,8 @@ public class ErrorMessaging
         TextColor.MakeTextRed();
         Console.WriteLine($"You are unable to move further in this direction.");
         TextColor.ResetTextColor();
+        Console.WriteLine("Press the enter key to try again...");
+        Console.ReadLine();
     }
 
     public static void InvalidInput()
