@@ -5,7 +5,7 @@ namespace _038_the_fountain_of_objects.Components;
 public class Player
 {
     // Properties
-    public int[] CurrentLocation { get; set; }
+    public int[] CurrentLocation { get; set; } = { 0, 0 };
 
     // Methods
     // Get input
@@ -138,7 +138,6 @@ public class Player
                     {
                         return true;
                     }
-                    break;
                 case "south":
                     if (playerLocationRow + moveSouth > map.MapSizeHeight - 1)
                     {
@@ -149,7 +148,6 @@ public class Player
                     {
                         return true;
                     }
-                    break;
                 case "east":
                     if (playerLocationColumn + moveEast > map.MapSizeWidth - 1)
                     {
@@ -160,7 +158,6 @@ public class Player
                     {
                         return true;
                     }
-                    break;
                 case "west":
                     if (playerLocationColumn + moveWest < map.MapSizeWidth - map.MapSizeWidth)
                     {
@@ -171,7 +168,6 @@ public class Player
                     {
                         return true;
                     }
-                    break;
                 default:
                     ErrorMessaging.Typo();
                     break;

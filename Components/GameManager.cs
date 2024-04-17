@@ -1,10 +1,13 @@
 using System.Globalization;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace _038_the_fountain_of_objects.Components;
 
 public static class GameManager
 {
-    public static bool IsGameActive { get; set; } = true;
+    private static bool IsGameActive { get; set; } = true;
+    private static DateTime StartTime { get; set; }
+    private static DateTime EndTime { get; set; }
 
     public static void StartGame()
     {
@@ -84,6 +87,9 @@ public static class GameManager
             map.RenderMap(map.MapSizeWidth, map.MapSizeHeight, map, player);
             // map.RenderDeveloperMap(map.MapSizeWidth, map.MapSizeHeight, map, player);
 
+            GetStartTime();
+            Console.WriteLine($"Starting time: {StartTime}");
+
             string[] playerInput = player.GetPlayerInput();
             bool isValidAction = player.IsValidAction(playerInput, player, map);
 
@@ -95,26 +101,56 @@ public static class GameManager
             CheckGameState(map, player);
         }
     }
-    
+
+    // Added timers for start, end, and calculated play time per challenge in level 32
+    // for DateTime usage
+    private static void GetStartTime()
+    {
+        DateTime startTime = DateTime.Now;
+        StartTime = startTime;
+    }
+
+    private static void GetEndTime()
+    {
+        DateTime endTime = DateTime.Now;
+        EndTime = endTime;
+    }
+
     private static void CheckGameState(Map map, Player player)
     {
-        // Check for win state
+        // Win
         if (map.GetCurrentRoomType(player, map).GetType() == typeof(CavernEntranceRoom))
         {
             if (map.FountainOfObjects.IsEnabled)
             {
-                Console.WriteLine($"You win!!");
+                Console.WriteLine("You win!!");
+                
+                GetEndTime();
+                TimeSpan timePlayed = EndTime - StartTime;
+                var minutesPlayed = Convert.ToInt32(timePlayed.TotalMinutes);
+                var secondsPlayed = Convert.ToInt32(timePlayed.TotalSeconds);
+                
+                Console.WriteLine($"It took {minutesPlayed} minutes, " +
+                                  $"| {secondsPlayed} seconds to finish the game.");
                 IsGameActive = false;
             }
         }
         
-        // Check for loss
+        // Loss
         if (map.GetCurrentRoomType(player, map).GetType() == typeof(PitRoom))
         {
             TextColor.MakeTextDarkRed();
             Console.WriteLine(map.Pit.Description);
             Console.WriteLine("Game over.");
             TextColor.ResetTextColor();
+            
+            GetEndTime();
+            TimeSpan timePlayed = EndTime - StartTime;
+            var minutesPlayed = Convert.ToInt32(timePlayed.TotalMinutes);
+            var secondsPlayed = Convert.ToInt32(timePlayed.TotalSeconds);
+            
+            Console.WriteLine($"It took {minutesPlayed} minutes, " +
+                              $"| {secondsPlayed} seconds to finish the game.");
             IsGameActive = false;
         }
     }
